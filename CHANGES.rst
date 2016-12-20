@@ -51,6 +51,9 @@ Bug fixes
 
 * Support building extension within a virtualenv on windows. See :issue:`119`.
 
+* Set ``skbuild <version>`` as wheel generator.
+  See `PEP-0427 <https://www.python.org/dev/peps/pep-0427/#file-contents>`_ and :issue:`191`.
+
 Documentation
 -------------
 

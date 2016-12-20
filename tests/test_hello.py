@@ -13,6 +13,7 @@ import pytest
 import sysconfig
 import tarfile
 
+from skbuild import __version__ as skbuild_version
 from skbuild.constants import SKBUILD_DIR
 from skbuild.utils import push_dir
 
@@ -98,8 +99,20 @@ def test_hello_wheel():
         'bonjour/__init__.py'
     ]
 
-    member_list = ZipFile(whls[0]).namelist()
+    archive = ZipFile(whls[0])
+    member_list = archive.namelist()
     assert sorted(expected_content) == sorted(member_list)
+
+    # PEP-0427: Generator is the name and optionally the version of the
+    # software that produced the archive.
+    # See https://www.python.org/dev/peps/pep-0427/#file-contents
+    current_generator = None
+    with archive.open("hello-1.2.3.dist-info/WHEEL") as wheel_file:
+        for line in wheel_file:
+            if line.startswith(b"Generator"):
+                current_generator = line.split(b":")[1].strip()
+                break
+    assert current_generator == bytes("skbuild %s" % skbuild_version)
 
 
 @pytest.mark.parametrize("dry_run", ['with-dry-run', 'without-dry-run'])

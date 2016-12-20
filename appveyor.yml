@@ -8,25 +8,10 @@ environment:
   matrix:
 
     # Visual Studio (Python 2 & 3, 32 & 64 bit)
-    - PYTHON_DIR: "C:\\Python27"
-      PYTHON_VERSION: "2.7.x"
-      PYTHON_ARCH: "32"
-      BLOCK: "0"
-
-    - PYTHON_DIR: "C:\\Python27-x64"
-      PYTHON_VERSION: "2.7.x"
-      PYTHON_ARCH: "64"
-      BLOCK: "0"
-
-    - PYTHON_DIR: "C:\\Python35"
-      PYTHON_VERSION: "3.5.x"
-      PYTHON_ARCH: "32"
-      BLOCK: "0"
-
     - PYTHON_DIR: "C:\\Python35-x64"
       PYTHON_VERSION: "3.5.x"
       PYTHON_ARCH: "64"
-      BLOCK: "0"
+      BLOCK: "1"
 
 cache:
   - C:\\cmake-3.6.2
